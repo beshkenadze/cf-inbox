@@ -43,7 +43,10 @@ function getAccessUrls(teamDomain: string) {
 const app = new Hono<{ Bindings: Env }>();
 
 // Cloudflare Access JWT validation middleware (production only)
+// TEMPORARILY DISABLED — re-enable once Access app is configured.
+// To restore: remove the unconditional `return next()` line below.
 app.use("*", async (c, next) => {
+	return next();
 	// Skip validation in development
 	if (import.meta.env.DEV) {
 		return next();
