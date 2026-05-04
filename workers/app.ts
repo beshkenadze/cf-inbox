@@ -71,8 +71,13 @@ app.use("*", async (c, next) => {
 			issuer,
 			audience: POLICY_AUD,
 		});
-	} catch {
-		return c.text("Invalid or expired Access token", 403);
+	} catch (err) {
+		const message = err instanceof Error ? err.message : String(err);
+		console.error("Access JWT validation failed:", message, {
+			teamDomain: TEAM_DOMAIN,
+			audPrefix: POLICY_AUD?.slice(0, 8),
+		});
+		return c.text(`Invalid or expired Access token: ${message}`, 403);
 	}
 
 	// Authorization model note: once a teammate passes the shared Cloudflare
