@@ -29,6 +29,13 @@
 			"preview_bucket_name": "cf-inbox"
 		}
 	],
+	"d1_databases": [
+		{
+			"binding": "AUTH_DB",
+			"database_name": "cf-inbox-auth",
+			"database_id": "002bc06e-bf9b-49a9-a1b9-51b46c81e273"
+		}
+	],
 	"ai": {
 		"binding": "AI"
 	},
